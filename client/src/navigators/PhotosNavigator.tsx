@@ -29,7 +29,7 @@ const PhotosNavigator: FC = () => {
       name="Photos"
       component={PhotosScreen}
       options={{
-        headerTitle: "Photos",
+        headerTitle: () => <StackHeader name="Photos" />,
         // headerShown: false,
       }}
     />

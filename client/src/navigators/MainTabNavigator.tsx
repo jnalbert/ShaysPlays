@@ -7,6 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import GamesNavigator from './GamesNavigator';
 import PhotosNavigator from './PhotosNavigator';
 import SettingsScreen from '../screens/SettingsScreen';
+import StackHeader from '../shared/StackHeader/StackHeader';
 
 const Tab = createBottomTabNavigator()
 
@@ -24,23 +25,20 @@ const MainTabNavigator: FC = () => {
         tabBarIcon: ({ color }) => {
 
             if (route.name === "GamesNav") {
-              return <MaterialIcons name="videogame-asset" size={39} color={color} />
+              return <MaterialIcons name="videogame-asset" size={37} color={color} />
             }
             if (route.name === "PhotosNav") {
-              return <MaterialIcons name="photo-library" size={35} color={color} />
+              return <MaterialIcons name="photo-library" size={33} color={color} />
             }
           
-            return <MaterialIcons name="settings" size={35} color={color} />
-  
+            return <MaterialIcons name="settings" size={33} color={color} />
         }
-        
       })}
-      
     
     >
-      <Tab.Screen options={{ headerTitle:"Bob", headerShown: false}} name="GamesNav" component={GamesNavigator} />
+      <Tab.Screen options={{ headerShown: false}} name="GamesNav" component={GamesNavigator} />
       <Tab.Screen options={{ headerShown: false }} name="PhotosNav" component={PhotosNavigator} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen options={{ headerTitle: () => <StackHeader name="Settings" />,}} name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   )
 }

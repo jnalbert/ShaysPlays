@@ -32,7 +32,7 @@ const GamesNavigator: FC = () => {
         name="Games"
         component={GamesScreen}
         options={{
-          headerTitle: "Games",
+            headerTitle: () => <StackHeader name="Games" />
           // headerShown: false,
         }}
       />

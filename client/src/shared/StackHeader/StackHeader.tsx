@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
+import { Poppins } from '../colors';
 
 const HeaderContainer = styled.View`
   height: 88px;
@@ -10,7 +11,7 @@ const HeaderContainer = styled.View`
 
 const HeaderText = styled.Text`
   font-size: 20px;
-  /* line-height: 28px; */
+  font-Family: ${Poppins};
   text-align: center;
   /* letter-spacing: -1px; */
 `
