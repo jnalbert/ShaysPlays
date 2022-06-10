@@ -30,8 +30,6 @@ export const FrankFurter = "Frankfurter"
 
 export const Poppins = "Poppins"
 
-export const SourceSerif = "SourceSerif"
+export const WorkSans = "WorkSans"
 
 export const Nunito = "Nunito"
-
-export const NunitoBold = "NunitoBold"
