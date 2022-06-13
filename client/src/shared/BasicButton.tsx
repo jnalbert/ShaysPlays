@@ -2,7 +2,7 @@
 import React, { FC } from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components/native';
-import { Jet } from './colors';
+import { Jet, Poppins } from './colors';
 
 
 const TouchableButtonWrapper = styled.TouchableOpacity`
@@ -11,21 +11,24 @@ const TouchableButtonWrapper = styled.TouchableOpacity`
   width: 50px;
   background-color: ${Jet};
   border-radius: 16px;
-  align-items: center;
   height: 50px;
+`
+
+const TextWrapper = styled.Text`
+    padding-top: 3%;
 `
 
 
 const ButtonText = styled.Text`
   color: #FFFFFF;
   text-align: center;
-  font-family: "PoppinsBold";
-  font-size: 15px;
+  font-family: ${Poppins};
+  font-size: 25px;
   font-weight: 600;
   line-height: 24px;
 `
 const PaddedView = styled.View`
-  padding: 11px 0px;
+  margin: 11px 0px;
 `
 
 interface BasicButtonProps {
@@ -41,7 +44,9 @@ const BasicButton: FC<BasicButtonProps> = ({ title, onPress, style, buttonTextSt
   const DisplayMeat = () => {
     return (
         <TouchableButtonWrapper disabled={isDisabled} style={style} onPress={onPress}>
-          <ButtonText style={buttonTextStyle} >{title}</ButtonText>
+            <TextWrapper>
+            <ButtonText style={buttonTextStyle} >{title}</ButtonText>
+            </TextWrapper>
         </TouchableButtonWrapper>
     )
   }
