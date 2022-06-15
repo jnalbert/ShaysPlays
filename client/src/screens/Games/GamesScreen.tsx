@@ -39,8 +39,9 @@ const BasicButtonWrapper = styled.View`
 `
 
 const CarouselWrapper = styled.View`
-margin-top: 15px;
-  width: 100%;
+    flex: 1;
+    margin-top: 15px;
+  /* width: 100%; */
   justify-content: center;
   align-items: center;
 `

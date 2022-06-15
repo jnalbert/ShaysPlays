@@ -64,7 +64,7 @@ const PlayButtonWrapper = styled.View`
     margin-top: 1px;
 `
 
-interface GameCardType {
+export interface GameCardType {
     name: string;
     gamesWon: number;
     totalGames: number;

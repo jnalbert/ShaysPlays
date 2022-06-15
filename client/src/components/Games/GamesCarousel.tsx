@@ -1,13 +1,14 @@
-import React, { FC } from 'react'
+import React, { FC, useRef } from 'react'
 import { View } from 'react-native';
 import styled from 'styled-components/native'
 import Carousel from 'react-native-snap-carousel';
 import { Pink, Purple, ShayBlue } from '../../shared/colors';
-import GameCardComp from './GameCardComp';
+import GameCardComp, { GameCardType } from './GameCardComp';
+
 
 const GamesCarousel: FC = () => {
 
-    const gamesData = [
+    const gamesData: GameCardType[] = [
         {
             name: "Wordle",
             gamesWon: 5,
@@ -33,11 +34,24 @@ const GamesCarousel: FC = () => {
             textColor: Pink
         }
     ]
+    const carouselRef = useRef<any>(null)
+    
+    const renderItem = ({ item, index }: {item: GameCardType, index: number}) => {
+        return <GameCardComp {...item} />
+    }
 
   return (
-    <View>
-      <GameCardComp {...gamesData[0]}  />
-    </View>
+      <Carousel
+          layout={"default"}
+          layoutCardOffset={30}
+          ref={carouselRef}
+          data={gamesData}
+          sliderWidth={300}
+          itemWidth={240}
+          itemHeight={400}
+          renderItem={renderItem}
+          loop={true}
+        />
   )
 }
 
