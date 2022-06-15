@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { RefreshControl, View } from 'react-native';
 import styled from 'styled-components/native'
 import DonutChart from '../../components/Games/DonutChart';
+import GamesCarousel from '../../components/Games/GamesCarousel';
 import BasicButton from '../../shared/BasicButton';
 import { Black, Purple, WorkSans } from '../../shared/colors';
 import ScreenWrapperComp from '../../shared/ScreenWrapperComp';
@@ -32,14 +33,16 @@ const MessageText = styled.Text`
   text-align: center;
 `
 
-const AddPurchaseWrapper = styled.View`
-  justify-content: center;
-  width: 77%;
-  /* padding-top: 6%; */
-`
 
 const BasicButtonWrapper = styled.View`
   
+`
+
+const CarouselWrapper = styled.View`
+margin-top: 15px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `
 
 const MAX_POINTS = 5;
@@ -104,6 +107,10 @@ const GamesScreen: FC = () => {
       )}
         
       </MessageWrapper>
+
+      <CarouselWrapper>
+        <GamesCarousel />
+      </CarouselWrapper>
       
     </ScreenWrapperComp>
   )
