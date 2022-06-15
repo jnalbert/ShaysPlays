@@ -6,8 +6,8 @@ import {
   Animated,
   StyleSheet,
 } from 'react-native';
-import Svg, { G, Circle, Rect } from 'react-native-svg';
-import { Purple } from '../../shared/colors';
+import Svg, { G, Circle } from 'react-native-svg';
+import { Pink } from '../../shared/colors';
 
 const MAX_POINTS = 5;
 
@@ -112,7 +112,7 @@ const DonutChart: FC<Props> = ({
         defaultValue="0"
         style={[
           StyleSheet.absoluteFillObject,
-          { fontSize: radius / 2.5, color: Purple ?? color },
+          { fontSize: radius / 2.0, color: Pink ?? color },
           styles.text,
         ]}
       />

@@ -35,7 +35,7 @@ const MessageText = styled.Text`
 
 
 const BasicButtonWrapper = styled.View`
-  
+  margin-bottom: 15px;
 `
 
 const CarouselWrapper = styled.View`
@@ -60,7 +60,7 @@ const GamesScreen: FC = () => {
 
         // *** uncomment this line to get real data ***
         // const resPoints = await GetRewardsData(uuid) as number
-        const resPoints = 3;
+        const resPoints = 5;
 
         // console.log('first', resPoints)
 
