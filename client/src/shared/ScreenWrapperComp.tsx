@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { ScrollView } from "react-native";
 import styled from "styled-components/native";
-import { backgroundColor } from "./colors";
+import { backgroundColor } from './colors';
 
 const ScreenWrapper = styled.View`
   flex: 1;
@@ -20,15 +20,17 @@ interface ScreenWrapperCompProps {
   children: React.ReactNode;
   scrollView?: boolean;
   refreshControl?: any;
+    backgroundColor?: string;
 }
 
 const ScreenWrapperComp: FC<ScreenWrapperCompProps> = ({
   children,
   scrollView,
   refreshControl,
+  backgroundColor
 }) => {
   return (
-    <ScreenBackgroundColor>
+    <ScreenBackgroundColor style={{backgroundColor: backgroundColor}}>
       {scrollView ? (
         <ScrollView refreshControl={refreshControl}>
           <ScreenWrapper>{children}</ScreenWrapper>
