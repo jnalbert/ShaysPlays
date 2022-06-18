@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { View } from 'react-native';
 import PhotoGalleryScreen from '../screens/Photos/PhotoGalleryScreen';
 import PhotosScreen from '../screens/Photos/PhotosScreen';
-import { backgroundColor } from '../shared/colors';
+import { backgroundColor, Jet } from '../shared/colors';
 import StackHeader from '../shared/StackHeader/StackHeader';
 import StackHeaderBackButton from '../shared/StackHeader/StackHeaderBackButton';
 
@@ -40,6 +40,7 @@ const PhotosNavigator: FC = () => {
       options={{
           headerTitle: () => <StackHeader name="" />,
           headerShown: true,
+          headerStyle: {backgroundColor: Jet}
       }}
     />
 

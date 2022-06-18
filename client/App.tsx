@@ -1,4 +1,4 @@
-import {View } from 'react-native';
+import {View} from 'react-native';
 import styled from 'styled-components/native';
 import { useFonts } from 'expo-font';
 import { Poppins_600SemiBold } from "@expo-google-fonts/poppins"
@@ -7,6 +7,7 @@ import { Nunito_400Regular } from '@expo-google-fonts/nunito';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import MainTabNavigator from './src/navigators/MainTabNavigator';
+
 
 const AppWrapperView = styled.View`
   flex: 1;
