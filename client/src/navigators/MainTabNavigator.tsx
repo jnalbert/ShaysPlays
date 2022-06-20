@@ -16,6 +16,7 @@ const MainTabNavigator: FC = () => {
     // console.log("Here")
   return (
       <Tab.Navigator
+        
       screenOptions={({ route }) => ({
         tabBarActiveTintColor: Purple,
         tabBarInactiveTintColor: Jet,
@@ -38,7 +39,7 @@ const MainTabNavigator: FC = () => {
     >
       <Tab.Screen options={{ headerShown: false}} name="GamesNav" component={GamesNavigator} />
       <Tab.Screen options={{ headerShown: false }} name="PhotosNav" component={PhotosNavigator} />
-      <Tab.Screen options={{ headerTitle: () => <StackHeader name="Settings" />,}} name="Settings" component={SettingsScreen} />
+      <Tab.Screen options={{ headerTitle: () => <StackHeader name="Settings" />, headerStyle: {borderWidth: 0}}} name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   )
 }

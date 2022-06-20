@@ -15,7 +15,9 @@ const TouchableButtonWrapper = styled.TouchableOpacity`
 `
 
 const TextWrapper = styled.Text`
-    padding-top: 3%;
+    /* padding-top: 3%; */
+    justify-content: center;
+    align-items: center;
 `
 
 
@@ -25,7 +27,7 @@ const ButtonText = styled.Text`
   font-family: ${Poppins};
   font-size: 25px;
   font-weight: 600;
-  line-height: 24px;
+  /* line-height: 24px; */
 `
 const PaddedView = styled.View`
   margin: 11px 0px;
