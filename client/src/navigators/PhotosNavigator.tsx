@@ -40,7 +40,6 @@ const PhotosNavigator: FC = () => {
       options={{
           headerTitle: () => <StackHeader name="" />,
           headerShown: true,
-          headerStyle: {backgroundColor: Jet}
       }}
     />
 
