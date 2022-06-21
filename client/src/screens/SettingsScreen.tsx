@@ -3,20 +3,15 @@ import { View } from 'react-native';
 import styled from 'styled-components/native'
 import LoveNotifications from '../components/Settings/LoveNotifications';
 import ScreenWrapperComp from '../shared/ScreenWrapperComp';
-
-
-const SectionWrapperBottom = styled.View`
-
-`
+import LoveCouponsDisplay from '../components/Settings/LoveCouponsDisplay';
 
 
 const SettingsScreen: FC = () => {
 
-   
-
   return (
     <ScreenWrapperComp>
       <LoveNotifications />
+      <LoveCouponsDisplay />
     </ScreenWrapperComp>
   )
 }

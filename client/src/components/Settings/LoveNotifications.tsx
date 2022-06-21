@@ -113,7 +113,7 @@ const LoveNotifications: FC = () => {
         let minutes = time.getMinutes();
         minutes = minutes < 10 ? '0' + minutes : minutes;
         const ampm = time.getHours() >= 12 ? 'pm' : 'am';
-        console.log(hours, minutes, ampm);
+        // console.log(hours, minutes, ampm);
         setLoveNotification({isCheck: loveNotification.isCheck, time: `${hours} : ${minutes}  ${ampm}`});
     }
 
@@ -122,7 +122,7 @@ const LoveNotifications: FC = () => {
         let hours = parseInt(loveNotification.time.substring(0, 2))
         hours = loveNotification.time.includes("pm") ? hours + 12 : hours;
         const minutes = parseInt(loveNotification.time.substring(4, 6));
-        console.log(hours, minutes)
+        // console.log(hours, minutes)
         date.setHours(hours)
         date.setMinutes(minutes)
         return date;
@@ -163,10 +163,7 @@ const LoveNotifications: FC = () => {
                             setIsPickingTime(false)
                         }}
                     />
-
-
                 </DataPickerWrapper>
-
             </OverallTimeWrapper>
         </Collapsible>
 
