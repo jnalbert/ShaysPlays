@@ -109,7 +109,8 @@ const LoveNotifications: FC = () => {
     const onConfirmTime = (time: any) => {
         setIsPickingTime(false)
        
-        const hours = time.getHours() % 12;
+        let hours = time.getHours() % 12;
+        hours = hours === 0 ? 12 : hours;
         let minutes = time.getMinutes();
         minutes = minutes < 10 ? '0' + minutes : minutes;
         const ampm = time.getHours() >= 12 ? 'pm' : 'am';
