@@ -134,7 +134,7 @@ const LoveCouponsDisplay: FC = () => {
                     {coupons.map((coupon, index) => {
                         return (
                             <CouponWrapper key={index}>
-                                <LoveCouponComp textStyle={{fontFamily: Nunito}} text={coupon.description} isCheck={coupon.isCompleted} circleSize={30} />
+                                <LoveCouponComp textStyle={{fontFamily: Nunito, fontSize: 18}} text={coupon.description} isCheck={coupon.isCompleted} circleSize={30} />
                             </CouponWrapper>
                         )
                     })}
