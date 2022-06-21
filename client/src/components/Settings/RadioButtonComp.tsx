@@ -27,9 +27,10 @@ interface Props {
     isChecked: boolean;
     size?: number;
     onPressPass?: () => void;
+    isDisabled: boolean;
 }
 
-const RadioButtonComp: FC<Props> = ({isChecked, size, onPressPass = () => {return}}) => {
+const RadioButtonComp: FC<Props> = ({isChecked, size, onPressPass = () => {return}, isDisabled}) => {
 
     const [colorOuter, setColorOuter] = useState(isChecked ? checkedColor : uncheckedColor);
     const [colorInner, setColorInner] = useState(isChecked ? checkedColor : "transparent");
@@ -42,7 +43,7 @@ const RadioButtonComp: FC<Props> = ({isChecked, size, onPressPass = () => {retur
     }
 
   return (
-    <Wrapper style={{width: size, height: size, borderColor: colorOuter}} disabled={(onPressPass) ? false : true} onPress={onPressFunc}>
+    <Wrapper style={{width: size, height: size, borderColor: colorOuter}} disabled={isDisabled} onPress={onPressFunc}>
         <InnerCircle style={{backgroundColor: colorInner}}>
         </InnerCircle>
     </Wrapper>

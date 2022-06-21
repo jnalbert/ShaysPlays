@@ -6,17 +6,24 @@ import RadioButtonComp from './RadioButtonComp';
 
 const OverallWrapper = styled.View`
     width: 100%;
-    height: 40px;
+    min-height: 40px;
     background-color: ${Text100};
     border-radius: 8px;
     flex-direction: row;
     align-items: center;
     padding-left: 16px;
+    /* justify-content: center; */
     /* padding-right: 16px; */
 `
 
 const TextWrapper = styled.View`
     width: 86%;
+`
+
+const TextWidth = styled.View`
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 80%;
 `
 
 const Text = styled.Text`
@@ -29,6 +36,7 @@ const Text = styled.Text`
 `
 const RadioButtonWrapper = styled.Text`
     width: 12%;
+    /* align-self: center; */
 `
 
 interface Props {
@@ -36,23 +44,28 @@ interface Props {
     isCheck: boolean;
     circleSize?: number;
     onCheckPress?: () => void;
+    textStyle?: {}
 }
 
 const LoveCouponComp: FC<Props> = ({
     text,
     isCheck,
     circleSize,
-    onCheckPress= () => {return}
+    onCheckPress,
+    textStyle
 }) => {
 
+    let isDisabled = (!onCheckPress) ? true : false;
 
   return (
     <OverallWrapper>
         <TextWrapper>
-            <Text>{text}</Text>
+            <TextWidth>
+                <Text style={textStyle}>{text}</Text>
+            </TextWidth>
         </TextWrapper>
         <RadioButtonWrapper>
-            <RadioButtonComp isChecked={isCheck} size={circleSize} onPressPass={onCheckPress}/>
+            <RadioButtonComp isDisabled={isDisabled} isChecked={isCheck} size={circleSize} onPressPass={onCheckPress}/>
         </RadioButtonWrapper>
     </OverallWrapper>
   )
