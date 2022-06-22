@@ -22,7 +22,7 @@ const MainTabNavigator: FC = () => {
         tabBarInactiveTintColor: Jet,
         tabBarShowLabel: false,
         tabBarItemStyle: { paddingTop: "2.5%"},
-        tabBarStyle: { height: "10%" },
+        tabBarStyle: { height: "8%" },
         tabBarIcon: ({ color }) => {
 
             if (route.name === "GamesNav") {
