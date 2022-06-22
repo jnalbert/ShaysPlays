@@ -69,7 +69,7 @@ const GamesNavigator: FC = () => {
         component={GameWinScreen}
         options={{
           headerTitle: () => <StackHeader name="" />,
-          headerShown: true,
+          headerShown: false,
         }}
       />
 
