@@ -7,7 +7,11 @@ const OverallWrapper = styled.View`
     flex-direction: column;
 `
 
-const Keyboard: FC = () => {
+interface Props {
+    onKeyPress: (letter: string) => void;
+}
+
+const Keyboard: FC<Props> = ({onKeyPress}) => {
 
     const row1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"]
     const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"]
@@ -15,10 +19,10 @@ const Keyboard: FC = () => {
 
   return (
     <OverallWrapper>
-      <KeyboardRow letters={row1} />
-      <KeyboardRow letters={row2} />
-      <KeyboardRow letters={row3} />
-      <KeyboardRow letters={["ENTER"]} />
+      <KeyboardRow onKeyPress={onKeyPress} letters={row1} />
+      <KeyboardRow onKeyPress={onKeyPress} letters={row2} />
+      <KeyboardRow onKeyPress={onKeyPress} letters={row3} />
+      <KeyboardRow onKeyPress={onKeyPress} letters={["ENTER"]} />
     </OverallWrapper>
   )
 }

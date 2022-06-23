@@ -22,14 +22,15 @@ const KeyText = styled.Text`
 
 interface Props {
     letters: string[];
+    onKeyPress: (letter: string) => void;
 }
 
-const KeyboardRow: FC<Props> = ({letters}) => {
+const KeyboardRow: FC<Props> = ({letters, onKeyPress}) => {
   return (
     <OverallRowWrapper>
         {letters.map((letter, index) => {
             return (
-                <KeyWrapper key={index}>
+                <KeyWrapper key={index} onPress={() => {onKeyPress(letter)}}>
                     <KeyText>{letter}</KeyText>
                 </KeyWrapper>
             )

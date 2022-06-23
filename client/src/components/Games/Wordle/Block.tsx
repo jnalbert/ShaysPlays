@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { View } from 'react-native';
 import styled from 'styled-components/native'
-import { Jet } from '../../../shared/colors';
+import { Jet, Pink, Purple } from '../../../shared/colors';
 
 const BlockWrapper = styled.View`
     /* border-color: #d3d6da; */
@@ -24,13 +24,41 @@ const BlockText = styled.Text`
 `
 
 interface Props {
-    letter: string;
+    index: number;
+    guess: string;
+    word: string;
+    guessed: boolean;
 }
 
-const Block: FC<Props> = ({letter}) => {
+const Block: FC<Props> = ({
+    index,
+    guess,
+    word,
+    guessed,
+}) => {
+    const letter = guess[index]
+    const wordLetter = word[index]
+
+    const blockStyles: any = {}
+    const textStyles: any = {}
+
+    const letterCompare = letter ? letter.toLowerCase() : letter
+
+    if (guessed && letterCompare === wordLetter) {
+        blockStyles.backgroundColor = Purple
+        textStyles.color = "#fff"
+        // console.log("Here")
+    } else if (guessed && word.includes(letterCompare)) {
+        blockStyles.backgroundColor = Pink
+        textStyles.color = "#fff"
+      } else if (guessed) {
+        blockStyles.backgroundColor = "#787c7e"
+        textStyles.color = "#fff"
+      }
+
   return (
-    <BlockWrapper>
-      <BlockText>{letter}</BlockText>
+    <BlockWrapper style={blockStyles}>
+      <BlockText style={textStyles}>{letter}</BlockText>
     </BlockWrapper>
   )
 }

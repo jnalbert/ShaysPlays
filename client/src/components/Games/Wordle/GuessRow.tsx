@@ -9,14 +9,25 @@ const RowWrapper = styled.View`
     justify-content: center;
 `
 
-const GuessRow: FC = () => {
+interface Props {
+    guess: string;
+    word: string;
+    guessed: boolean;
+}
+
+const GuessRow: FC<Props> = ({
+    guess,
+    word,
+    guessed,
+}) => {
+
   return (
     <RowWrapper>
-      <Block letter='A'/>
-      <Block letter='A'/>
-      <Block letter='A'/>
-      <Block letter='A'/>
-      <Block letter='A'/>
+      <Block index={0} guess={guess} word={word} guessed={guessed}/>
+      <Block index={1} guess={guess} word={word} guessed={guessed}/>
+      <Block index={2} guess={guess} word={word} guessed={guessed}/>
+      <Block index={3} guess={guess} word={word} guessed={guessed}/>
+      <Block index={4} guess={guess} word={word} guessed={guessed}/>
     </RowWrapper>
   )
 }
