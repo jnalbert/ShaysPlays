@@ -80,7 +80,7 @@ const GamesScreen: FC = () => {
       const navigator: any = useNavigation()
 
       const goToClaimRewards = async () => {
-        navigator.navigate("ClaimRewardScreen")
+        navigator.navigate("ClaimRewardsScreen")
 
         // *** uncomment this line to get real data ***
         // const uuid = await _getStoredUuid() as string

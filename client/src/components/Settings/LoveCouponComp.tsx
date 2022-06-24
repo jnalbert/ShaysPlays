@@ -45,6 +45,8 @@ interface Props {
     circleSize?: number;
     onCheckPress?: () => void;
     textStyle?: {}
+    height?: number;
+    backgroundColor?: string;
 }
 
 const LoveCouponComp: FC<Props> = ({
@@ -52,13 +54,15 @@ const LoveCouponComp: FC<Props> = ({
     isCheck,
     circleSize,
     onCheckPress,
-    textStyle
+    textStyle,
+    height,
+    backgroundColor
 }) => {
 
     let isDisabled = (!onCheckPress) ? true : false;
 
   return (
-    <OverallWrapper>
+    <OverallWrapper style={{height: height ? height : "auto", backgroundColor: backgroundColor ? backgroundColor : Text100}}>
         <TextWrapper>
             <TextWidth>
                 <Text style={textStyle}>{text}</Text>

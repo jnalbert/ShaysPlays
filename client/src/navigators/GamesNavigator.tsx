@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { FC } from 'react';
 import { View } from 'react-native';
+import ClaimRewardsScreen from '../screens/Games/ClaimRewardsScreen';
 import GamesScreen from '../screens/Games/GamesScreen';
 import GameWinScreen from '../screens/Games/GameWinScreen';
 import MemoryScreen from '../screens/Games/MemoryScreen';
@@ -72,6 +73,15 @@ const GamesNavigator: FC = () => {
           headerShown: false,
         }}
       />
+
+    <Stack.Screen
+        name="ClaimRewardsScreen"
+        component={ClaimRewardsScreen}
+        options={{
+          headerTitle: () => <StackHeader name="Claim Rewards" />,
+          headerShown: true,
+        }}
+      />    
 
       
     </Stack.Navigator>
