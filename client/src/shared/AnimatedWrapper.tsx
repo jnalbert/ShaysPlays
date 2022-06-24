@@ -6,10 +6,13 @@ interface Props {
     children: React.ReactNode;
     duration: number;
     fadeRef: any;
+    isInView: boolean;
 }
 
-const AnimatedWrapper: FC<Props> = ({children, duration, fadeRef}) => {
-    const fadeAnim = useRef(new Animated.Value(0)).current;
+const AnimatedWrapper: FC<Props> = ({children, duration, fadeRef, isInView}) => {
+
+    const fadeValue = isInView ? 1 : 0;
+    const fadeAnim = useRef(new Animated.Value(fadeValue)).current;
 
 
     useImperativeHandle(fadeRef, () => ({

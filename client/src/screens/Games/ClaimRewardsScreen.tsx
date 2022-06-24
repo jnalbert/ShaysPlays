@@ -103,7 +103,7 @@ const ClaimRewardsScreen: FC = () => {
             )
         }
 
-         <AnimatedWrapper duration={2000} fadeRef={fadeRef}>
+         <AnimatedWrapper duration={2000} fadeRef={fadeRef} isInView={false}>
             <LoveCouponWrapper>
                 <LoveCouponHeader>Love Coupon</LoveCouponHeader>
                 <CouponWrapper>
