@@ -49,6 +49,7 @@ const MemoryScreen: FC = () => {
 
     const onCardClick = async (index: number) => {
         if (choiceOne && choiceTwo) return
+        if (cards[index].isFlipped) return
         if (choiceOne === null) {
             setChoiceOne(index);
             setCards(prevCards => {
@@ -138,7 +139,7 @@ const MemoryScreen: FC = () => {
     const navigation: any = useNavigation();
 
     const checkIfGameOver = async (cardsNew: CardType[]) => {
-        console.log("running")
+        // console.log("running")
         if (cardsNew.filter(card => card.isMatched).length === cardsNew.length) {
             sendMessageInfo("YOU WIN!");
             await sleep(2500)
