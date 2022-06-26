@@ -3,6 +3,7 @@ import React, { FC, useState, useEffect } from 'react'
 import { View } from 'react-native';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import styled from 'styled-components/native'
+import { gameWonSetDb } from '../../../firebase/FirestoreFunctions';
 import GamesHeader from '../../components/Games/GamesHeader';
 import CardsRow from '../../components/Games/Memory/CardsRow';
 import { Poppins } from '../../shared/colors';
@@ -142,6 +143,7 @@ const MemoryScreen: FC = () => {
         // console.log("running")
         if (cardsNew.filter(card => card.isMatched).length === cardsNew.length) {
             sendMessageInfo("YOU WIN!");
+            gameWonSetDb("memory")
             await sleep(2500)
             navigation.navigate('GameWinScreen')
     

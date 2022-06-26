@@ -9,6 +9,7 @@ import { makepuzzle, solvepuzzle } from "sudoku";
 import { showMessage } from 'react-native-flash-message';
 import FlashMessage from 'react-native-flash-message';
 import { useNavigation } from '@react-navigation/native';
+import { gameWonSetDb } from '../../../firebase/FirestoreFunctions';
 
 const HeaderWrapper = styled.View`
     width: 100%;
@@ -55,7 +56,7 @@ const SudokuScreen: FC = () => {
                 puzzleNumbersArray.push(row)
             }
 
-            console.log(puzzleNumbersArray, "solutions")
+            // console.log(puzzleNumbersArray, "solutions")
 
         setSolution(puzzleNumbersArray)
     
@@ -149,6 +150,7 @@ const SudokuScreen: FC = () => {
         // Send to db that game was won
         setIsGameWon(true)
         sendMessageInfo("YOU WIN!");
+        gameWonSetDb("sudoku")
         await delay(2000)
         navigation.navigate('GameWinScreen')
     }

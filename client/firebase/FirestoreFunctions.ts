@@ -41,6 +41,15 @@ export const gameWonSetDb = async (gameName: string) => {
     }
 }
 
+export const getWordleSolution = async () => {
+    try {
+        const docData = (await getDoc(doc(db, "gamesData", "wordle"))).data()
+        return docData?.solutionIndex
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 // export const addThingsToFirestore = async () => {
 //     setDoc(doc(db, "gamesData", "totalScore"), {
 //         gamesWon: 0,

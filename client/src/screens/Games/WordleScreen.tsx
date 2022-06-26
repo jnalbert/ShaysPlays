@@ -10,6 +10,7 @@ import ScreenWrapperComp from '../../shared/ScreenWrapperComp';
 import { showMessage } from "react-native-flash-message";
 import { Poppins } from '../../shared/colors';
 import { useNavigation } from '@react-navigation/native';
+import { gameWonSetDb, getWordleSolution } from '../../../firebase/FirestoreFunctions';
 
 
 
@@ -60,6 +61,8 @@ const WordleScreen: FC = () => {
     const handleGameWin = async () => {
         setIsGameComplete(true)
         sendMessageInfo("YOU WIN!");
+
+        gameWonSetDb("wordle")
         await delay(2000)
         navigation.navigate('GameWinScreen')
     }
@@ -106,6 +109,7 @@ const WordleScreen: FC = () => {
               }
 
             if (guessLower === solution) {
+                setGuessIndex(guessIndex + 1)
                 handleGameWin()
                 return;
             }
@@ -132,7 +136,8 @@ const WordleScreen: FC = () => {
 
     const getSolutionIndex = async () => {
         // get solution from db ***
-        const solutionIndex = 10;
+        const solutionIndex = await getWordleSolution();
+        console.log("solutionIndex", solutionIndex)
         setSolution(solutions[solutionIndex])
     }
 
