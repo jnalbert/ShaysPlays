@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import styled from 'styled-components/native'
 import { Black, Jet, Poppins, Text500, WorkSans } from '../../shared/colors';
 import BasicButton from '../../shared/BasicButton';
+import { GameCardType } from '../../screens/Games/GamesScreen';
 
 const OverallWrapper = styled.View`
     height: 355px;
@@ -52,7 +53,7 @@ const SubText = styled.Text`
 
 const GamesWonText = styled.Text`
     font-family: ${Poppins};
-    font-size: 35px;
+    font-size: 40px;
     line-height: 48px;
     text-align: center;
     letter-spacing: 2px;
@@ -64,16 +65,8 @@ const PlayButtonWrapper = styled.View`
     margin-top: 1px;
 `
 
-export interface GameCardType {
-    name: string;
-    gamesWon: number;
-    totalGames: number;
-    playScreenName: string;
-    backgroundColor: string;
-    textColor: string;
-}
 
-const GameCardComp: FC<GameCardType> = ({name, gamesWon, totalGames, playScreenName, backgroundColor, textColor}) => {
+const GameCardComp: FC<GameCardType> = ({name, gamesWon, playScreenName, backgroundColor, textColor}) => {
 
     const displayLogo = () => {
         if (name === "Wordle") return <Logo source={require("../../../assets/WordleLogo.png")} style={{width: 170, height: 98}} />
@@ -103,7 +96,7 @@ const GameCardComp: FC<GameCardType> = ({name, gamesWon, totalGames, playScreenN
       </SubText>
 
       <GamesWonText style={{color: textColor}}>
-        {gamesWon}/{totalGames}
+        {gamesWon}
       </GamesWonText>
 
       <PlayButtonWrapper>

@@ -2,10 +2,11 @@ import { useNavigation } from '@react-navigation/native';
 import React, { FC, useEffect, useState } from 'react'
 import { RefreshControl, View } from 'react-native';
 import styled from 'styled-components/native'
+import { getIndividualGameData, getTotalGamesData } from '../../../firebase/FirestoreFunctions';
 import DonutChart from '../../components/Games/DonutChart';
 import GamesCarousel from '../../components/Games/GamesCarousel';
 import BasicButton from '../../shared/BasicButton';
-import { Black, Purple, WorkSans } from '../../shared/colors';
+import { Black, Pink, Purple, ShayBlue, WorkSans } from '../../shared/colors';
 import ScreenWrapperComp from '../../shared/ScreenWrapperComp';
 
 const DonutWrapper = styled.View`
@@ -46,9 +47,43 @@ const CarouselWrapper = styled.View`
   align-items: center;
 `
 
+export interface GameCardType {
+    name: string;
+    gamesWon: number;
+    playScreenName: string;
+    backgroundColor: string;
+    textColor: string;
+}
+
+
+const gamesDataRaw: GameCardType[] = [
+    {
+        name: "Wordle",
+        gamesWon: 5,
+        playScreenName: "WordleScreen",
+        backgroundColor: Purple,
+        textColor: Pink
+    },
+    {
+        name: "Sudoku",
+        gamesWon: 5,
+        playScreenName: "SudokuScreen",
+        backgroundColor: Pink,
+        textColor: ShayBlue
+    },
+    {
+        name: "Memory",
+        gamesWon: 5,
+        playScreenName: "MemoryScreen",
+        backgroundColor: ShayBlue,
+        textColor: Pink
+    }
+]
+
 const MAX_POINTS = 5;
 
 const GamesScreen: FC = () => {
+
 
     const [points, setPoints] = useState(0)
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -56,11 +91,10 @@ const GamesScreen: FC = () => {
 
       const GetPoints = async () => {
         setIsRefreshing(true)
-        // const uuid = await _getStoredUuid() as string
 
-        // *** uncomment this line to get real data ***
-        // const resPoints = await GetRewardsData(uuid) as number
-        const resPoints = 5;
+        const resPoints: any = await getTotalGamesData()
+        getIndividualGamePoints()
+        // console.log(first)
 
         // console.log('first', resPoints)
 
@@ -73,6 +107,37 @@ const GamesScreen: FC = () => {
         }
       }
 
+      const [gamesData, setGamesData] = useState<GameCardType[]>(gamesDataRaw);
+
+      const getIndividualGamePoints = async () => {
+        const wordleGamesWon = await getIndividualGameData('wordle')
+        const sudokuGamesWon = await getIndividualGameData('sudoku')
+        const memoryGamesWon = await getIndividualGameData('memory')
+
+        const newData: GameCardType[] = gamesDataRaw.map(game => {
+            if (game.name === 'Wordle') {
+                return {
+                ...game,
+                gamesWon: wordleGamesWon
+                }
+            } else if (game.name === 'Sudoku') {
+                return {
+                ...game,
+                gamesWon: sudokuGamesWon
+                }
+            } else if (game.name === 'Memory') {
+                return {
+                ...game,
+                gamesWon: memoryGamesWon
+                }
+            }
+            return game;
+        })
+
+        setGamesData(newData)
+    
+      }
+
       useEffect(() => {
         GetPoints()
       }, [])
@@ -80,6 +145,7 @@ const GamesScreen: FC = () => {
       const navigator: any = useNavigation()
 
       const goToClaimRewards = async () => {
+        // await addThingsToFirestore()
         navigator.navigate("ClaimRewardsScreen")
 
         // *** uncomment this line to get real data ***
@@ -110,7 +176,7 @@ const GamesScreen: FC = () => {
       </MessageWrapper>
 
       <CarouselWrapper>
-        <GamesCarousel />
+        <GamesCarousel games={gamesData}/>
       </CarouselWrapper>
       
     </ScreenWrapperComp>

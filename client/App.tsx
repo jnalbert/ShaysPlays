@@ -28,9 +28,14 @@ const App = () => {
 
   const things = {email: "jnalbert879@gmail.com", pass: "TEST2098?"}
 
-  const LoginIn = () => {
+  const LoginIn = async () => {
+    const currentUser = await Auth.currentUser
+    if (!currentUser) {
+        console.log("does not have suer")
+        signInWithEmailAndPassword(Auth, things.email, things.pass)
+    }
     // createUserWithEmailAndPassword(Auth, things.email, things.pass)
-    signInWithEmailAndPassword(Auth, things.email, things.pass)
+    // signInWithEmailAndPassword(Auth, things.email, things.pass)
   }
 
   useEffect(() => {
