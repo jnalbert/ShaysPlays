@@ -29,19 +29,6 @@ export interface CardType {
 
 const MemoryScreen: FC = () => {
 
-    const testingUrls = [
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        "https://images.pexels.com/photos/1172253/pexels-photo-1172253.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        "https://media.istockphoto.com/photos/taj-mahal-mausoleum-in-agra-picture-id1146517111?k=20&m=1146517111&s=612x612&w=0&h=vHWfu6TE0R5rG6DJkV42Jxr49aEsLN0ML-ihvtim8kk=",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKkKcsPVFyu0Ijfj1O6gXNcddzCGIXGmaxbhSS_MIi5vk_P894NkvfB-co4cOPJ4CC1Yo&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe5VheD-fNymktyeBSylXXa93jrQ5JjmC2fw&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_sYfvABB3L-FBjyhPf3nZEjCbsPuuewJW9uN9dnn0rsuC2Smd7oxwuVrOzuFUQyqNQq0&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-68BCIaW0Iiam8wgn9vWs3vcGMHtg1yMTBg&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy__qa-iNxtZb6zKzRpsvVd-qFWaxFKIBb352IEI-gZ7CtWzAO6GNxzoZk5yJdWGEnbEw&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc1Y3B0Zz6Q3tsNafyrvoxYP1TRFEgihfx-lWL7UesXyz4F56R4dFTSyjWbJBISP8DxXw&usqp=CAU",
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTrvsgIM5tG2B6c54C8GqR8ER9IlhGv9FaTvjJY1yPLn1J7EhoFuPmEFM8DlT-ZCO7g8Q&usqp=CAU",
-    ]
-
     const [cards, setCards] = useState<CardType[]>([]);
     const [choiceOne, setChoiceOne] = useState<number | null>(null);
     const [choiceTwo, setChoiceTwo] = useState<number | null>(null);
