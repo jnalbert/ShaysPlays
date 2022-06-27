@@ -3,7 +3,7 @@ import React, { FC, useState, useEffect } from 'react'
 import { View } from 'react-native';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import styled from 'styled-components/native'
-import { gameWonSetDb } from '../../../firebase/FirestoreFunctions';
+import { gameWonSetDb, getDbPhotos } from '../../../firebase/FirestoreFunctions';
 import GamesHeader from '../../components/Games/GamesHeader';
 import CardsRow from '../../components/Games/Memory/CardsRow';
 import { Poppins } from '../../shared/colors';
@@ -76,7 +76,7 @@ const MemoryScreen: FC = () => {
     const checkIfMatch = async () => {
         // console.log("run")
         if (choiceOne !== null && choiceTwo !== null) {
-            console.log("run")
+            // console.log("run")
             if (cards[choiceOne].src === cards[choiceTwo].src) {
                 // console.log("the cards match")
                 setCards(prevCards => {
@@ -111,11 +111,14 @@ const MemoryScreen: FC = () => {
         setCards(shuffledCards)
     }
 
-    useEffect(() => {
+    const setUpGame = async () => {
+        const urls = await getDbPhotos(10)
+        // console.log(testingUrls.length)
+
         const cardsFakeData: CardType[] = []
         for (let i = 0; i < 10; i++) {
             cardsFakeData.push({
-                src: testingUrls[i],
+                src: urls[i],
                 index: 0,
                 isMatched: false,
                 isFlipped: false
@@ -123,6 +126,10 @@ const MemoryScreen: FC = () => {
         }
 
         shuffleCards(cardsFakeData)
+    }
+
+    useEffect(() => {
+        setUpGame()
     }, [])
 
 
