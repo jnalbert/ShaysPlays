@@ -1,5 +1,5 @@
-import React, { FC, useState } from "react";
-import { View } from "react-native";
+import React, { FC, useState, useEffect } from "react";
+import { RefreshControl, View } from "react-native";
 import styled from "styled-components/native";
 import PhotoRowType1 from "../../components/Photos/PhotoPieceType1";
 import PhotoRowType2 from "../../components/Photos/PhotoPieceType2";
@@ -7,6 +7,7 @@ import BasicButton from "../../shared/BasicButton";
 import ScreenWrapperComp from "../../shared/ScreenWrapperComp";
 import { useNavigation } from "@react-navigation/native";
 import { Jet } from "../../shared/colors";
+import { getDbPhotos } from "../../../firebase/FirestoreFunctions";
 
 const OverallWrapper = styled.View`
   margin-top: 20px;
@@ -55,7 +56,8 @@ const PhotosScreen: FC = () => {
     "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
     "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
   ];
-  const [photos, setPhotos] = useState<string[]>(imgs);
+  const [photos, setPhotos] = useState<string[]>([]);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const navigator: any = useNavigation();
 
@@ -63,8 +65,25 @@ const PhotosScreen: FC = () => {
     navigator.navigate("PhotoGallery");
   };
 
+  const getImageUrls = async () => {
+    setIsRefreshing(true)
+    const urls = await getDbPhotos(11)
+    setPhotos(urls);
+    setIsRefreshing(false)
+  }
+  
+  useEffect(() => {
+    getImageUrls()
+  }, [])
+
   return (
-    <ScreenWrapperComp scrollView>
+    <ScreenWrapperComp scrollView 
+    refreshControl={
+        <RefreshControl refreshing={isRefreshing} onRefresh={async () => {
+          await getImageUrls()
+        }} />
+      }
+    >
       <OverallWrapper>
         <PhotoGridWrapper>
           <GridItemContainer>
