@@ -163,7 +163,7 @@ const PhotoGalleryScreen: FC = () => {
             renderItem={renderPhoto}
             loop={true}
             autoplay={true}
-            autoplayInterval={5000}
+            autoplayInterval={3000}
             />
            
         </PhotosCarouselWrapper>
