@@ -23,7 +23,7 @@ const TextWrapper = styled.View`
 const TextWidth = styled.View`
     padding-top: 5px;
     padding-bottom: 5px;
-    width: 80%;
+    width: 90%;
 `
 
 const Text = styled.Text`
@@ -31,7 +31,7 @@ const Text = styled.Text`
     color: ${Black};
     font-size: 20px;
     line-height: 28px;
-    letter-spacing: -0.25px;
+    letter-spacing: -0.4px;
     font-family: ${Poppins};
 `
 const RadioButtonWrapper = styled.Text`

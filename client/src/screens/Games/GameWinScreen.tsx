@@ -56,7 +56,7 @@ const GameWinScreen: FC = () => {
     const navigation: any = useNavigation();
 
     const gotToGamesScreen = () => {
-        navigation.navigate('Games');
+        navigation.push('Games');
     }
 
   return (

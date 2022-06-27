@@ -7,6 +7,7 @@ import BasicButton from '../../shared/BasicButton';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import AnimatedWrapper from '../../shared/AnimatedWrapper';
 import LoveCouponComp from '../../components/Settings/LoveCouponComp';
+import { getNewLoveCoupon } from '../../../firebase/FirestoreFunctions';
 
 
 const HeaderWrapper = styled.View`
@@ -75,10 +76,9 @@ const ClaimRewardsScreen: FC = () => {
 
     const fadeRef = useRef<any>(null)
 
-    const onPressClaimPrize = () => {
-        // ** Get coupon from db await it
-        // ** Set coupon to loveCoupon
-        setLoveCoupon("One free book from anywhere")
+    const onPressClaimPrize = async () => {
+        const coupon = await getNewLoveCoupon()
+        setLoveCoupon(coupon)
 
         setIsClaimReward(true)
         fadeRef.current.fadeInFunc()
@@ -107,7 +107,7 @@ const ClaimRewardsScreen: FC = () => {
             <LoveCouponWrapper>
                 <LoveCouponHeader>Love Coupon</LoveCouponHeader>
                 <CouponWrapper>
-                    <LoveCouponComp text={loveCoupon} isCheck={false} circleSize={25} textStyle={{fontSize: 23}} height={100} backgroundColor={Pink}/>
+                    <LoveCouponComp text={loveCoupon} isCheck={false} circleSize={25} textStyle={{fontSize: 20}} height={100} backgroundColor={Pink}/>
                 </CouponWrapper>
             </LoveCouponWrapper>
         </AnimatedWrapper>

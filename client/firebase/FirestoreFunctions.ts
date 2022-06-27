@@ -1,4 +1,4 @@
-import { doc, getDoc, increment, updateDoc } from "firebase/firestore"
+import { collection, doc, getDoc, getDocs, increment, query, updateDoc, where } from "firebase/firestore"
 import { db } from "../config/firebase"
 
 
@@ -65,6 +65,32 @@ export const getDbPhotos = async (count: number) => {
         return (sendUrls as any)
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const getNewLoveCoupon = async () => {
+    try {
+        // get the coupon where the isClaimed property is false
+        const couponsRef = collection(db, "loveCoupons")
+        const q = query(couponsRef, where("isClaimed", "==", false));
+        
+        const docsList = (await getDocs(q)).docs
+        
+
+        const docCurrent = docsList[Math.floor(Math.random() * docsList.length)]
+        updateDoc(docCurrent.ref, {
+            isClaimed: true
+        })
+        
+        updateDoc(doc(db, "gamesData", "totalScore"), {
+            prizesClaimed: increment(1)
+        })
+
+        return docCurrent.data().text
+
+    } catch (error) {
+        console.log(error)
+        return "We ran out of prizes :("
     }
 }
 

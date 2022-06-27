@@ -144,7 +144,15 @@ const GamesScreen: FC = () => {
 
       const navigator: any = useNavigation()
 
+      const [hasClaimed, setHasClaimed] = useState(false)
+
       const goToClaimRewards = async () => {
+        if (hasClaimed) {
+            await GetPoints()
+            setHasClaimed(false)
+            return
+        }
+        setHasClaimed(true)
         navigator.navigate("ClaimRewardsScreen")
 
         // *** uncomment this line to get real data ***
