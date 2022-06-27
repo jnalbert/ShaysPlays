@@ -59,7 +59,7 @@ const PhotosScreen: FC = () => {
 
   const navigator: any = useNavigation();
 
-  const goToPhotosGallery = () => {
+  const goToPhotosGallery = async () => {
     navigator.navigate("PhotoGallery");
   };
 
@@ -72,17 +72,17 @@ const PhotosScreen: FC = () => {
             <PhotoRowType2 width={40} imgUrls={[photos[1], photos[2]]} />
           </GridItemContainer>
           <GridItemContainer>
-            <PhotoRowType1 width={33.3} imgUrl={photos[0]} />
-            <PhotoRowType1 width={33.3} imgUrl={photos[0]} />
-            <PhotoRowType1 width={33.3} imgUrl={photos[0]} />
+            <PhotoRowType1 width={33.3} imgUrl={photos[3]} />
+            <PhotoRowType1 width={33.3} imgUrl={photos[4]} />
+            <PhotoRowType1 width={33.3} imgUrl={photos[5]} />
           </GridItemContainer>
           <GridItemContainer>
-            <PhotoRowType2 width={40} imgUrls={[photos[1], photos[2]]} />
-            <PhotoRowType1 width={60} imgUrl={photos[0]} />
+            <PhotoRowType2 width={40} imgUrls={[photos[6], photos[7]]} />
+            <PhotoRowType1 width={60} imgUrl={photos[8]} />
           </GridItemContainer>
           <GridItemContainer>
-            <PhotoRowType1 width={50} imgUrl={photos[0]} />
-            <PhotoRowType1 width={50} imgUrl={photos[0]} />
+            <PhotoRowType1 width={50} imgUrl={photos[9]} />
+            <PhotoRowType1 width={50} imgUrl={photos[10]} />
           </GridItemContainer>
         </PhotoGridWrapper>
         

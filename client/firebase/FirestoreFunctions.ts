@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, increment, setDoc, updateDoc } from "firebase/firestore"
+import { doc, getDoc, increment, updateDoc } from "firebase/firestore"
 import { db } from "../config/firebase"
 
 
@@ -50,8 +50,36 @@ export const getWordleSolution = async () => {
     }
 }
 
-// export const addThingsToFirestore = async () => {
-//     setDoc(doc(db, "gamesData", "totalScore"), {
-//         gamesWon: 0,
+export const getDbPhotos = async (count: number) => {
+    try {
+        const docUrls: any = (await getDoc(doc(db, "picturesUrls", "pictures"))).data()
+        const urls = docUrls?.urls
+        const sendUrls = []
+        for (let i = 0; i < count; i++) {
+            // random number between 0 and urls.length
+            const random = Math.floor(Math.random() * urls.length)
+            sendUrls.push(urls[random])
+        }
+        return (sendUrls as any)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// const addThem = async (downloadUrls: string[]) => {
+//     console.log(downloadUrls.length)
+//     await updateDoc(doc(db, "picturesUrls", "pictures"), {
+//         urls: downloadUrls
 //     })
+// }
+
+// export const addThingsToFirestore = async () => {
+//     const listRef = ref(storage, "photos")
+//     const listImages = await listAll(listRef)
+//     const downloadUrls = []
+//     for (const image of listImages.items) {
+//         const downloadUrl = await getDownloadURL(image)
+//         downloadUrls.push(downloadUrl)
+//     }
+//     addThem(downloadUrls)
 // }

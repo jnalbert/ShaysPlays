@@ -145,7 +145,6 @@ const GamesScreen: FC = () => {
       const navigator: any = useNavigation()
 
       const goToClaimRewards = async () => {
-        // await addThingsToFirestore()
         navigator.navigate("ClaimRewardsScreen")
 
         // *** uncomment this line to get real data ***
