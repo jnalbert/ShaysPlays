@@ -7,6 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Jet, Purple } from '../../shared/colors';
 import Carousel from 'react-native-snap-carousel';
 import { Audio, AVPlaybackStatus } from 'expo-av';
+import { getDbPhotos } from '../../../firebase/FirestoreFunctions';
 
 
 
@@ -27,7 +28,7 @@ const PhotosCarouselWrapper = styled.View`
 `
 
 const PhotoWrapper = styled.View`
-    height: 400px;
+    height: 440px;
     width: 300px;
     border-radius: 8px;
     overflow: hidden;
@@ -60,16 +61,18 @@ const SkipAudioContainer = styled.TouchableOpacity`
 
 const PhotoGalleryScreen: FC = () => {
 
-    const fakeData = [
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80",
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80",
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80",
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80",
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80",
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydHJhaXR8ZW58MHx8MHx8&w=1000&q=80",
-    ]
+    const [photosUrls, setPhotosUrls] = useState<string[]>([])
 
-    const [photosUrls, setPhotosUrls] = useState<string[]>(fakeData)
+    const getUrls = async () => {
+        const urls = await getDbPhotos(326)
+        // suffles urls in randome order
+        const shuffledUrls = urls.sort(() => Math.random() - 0.5)
+        setPhotosUrls(shuffledUrls)
+    }
+
+    useEffect(() => {
+        getUrls()
+    }, [])
 
 
     const renderPhoto = ({ item, index }: {item: string, index: number}) => {
@@ -158,8 +161,8 @@ const PhotoGalleryScreen: FC = () => {
             ref={carouselRef}
             data={photosUrls}
             sliderWidth={300}
-            itemWidth={320}
-            itemHeight={400}
+            itemWidth={340}
+            itemHeight={430}
             renderItem={renderPhoto}
             loop={true}
             autoplay={true}

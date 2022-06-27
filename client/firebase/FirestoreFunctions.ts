@@ -54,6 +54,8 @@ export const getDbPhotos = async (count: number) => {
     try {
         const docUrls: any = (await getDoc(doc(db, "picturesUrls", "pictures"))).data()
         const urls = docUrls?.urls
+        count = count === 326 ? urls.length : count
+        // console.log(count)
         const sendUrls = []
         for (let i = 0; i < count; i++) {
             // random number between 0 and urls.length
