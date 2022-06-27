@@ -38,7 +38,7 @@ const MainTabNavigator: FC = () => {
     
     >
       <Tab.Screen options={{ headerShown: false}} name="GamesNav" component={GamesNavigator} />
-      <Tab.Screen options={{ headerShown: false }} name="PhotosNav" component={PhotosNavigator} />
+      <Tab.Screen options={{ headerShown: false, lazy: false }} name="PhotosNav" component={PhotosNavigator} />
       <Tab.Screen options={{ headerTitle: () => <StackHeader name="Settings" />, headerStyle: {borderWidth: 0}}} name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   )
