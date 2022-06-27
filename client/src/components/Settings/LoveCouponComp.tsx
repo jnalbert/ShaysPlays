@@ -47,6 +47,7 @@ interface Props {
     textStyle?: {}
     height?: number;
     backgroundColor?: string;
+    inList?: boolean;
 }
 
 const LoveCouponComp: FC<Props> = ({
@@ -56,13 +57,14 @@ const LoveCouponComp: FC<Props> = ({
     onCheckPress,
     textStyle,
     height,
+    inList,
     backgroundColor
 }) => {
 
     let isDisabled = (!onCheckPress) ? true : false;
 
   return (
-    <OverallWrapper style={{height: height ? height : "auto", backgroundColor: backgroundColor ? backgroundColor : Text100}}>
+    <OverallWrapper style={{height: height ? height : "auto", backgroundColor: backgroundColor ? backgroundColor : Text100, minHeight: inList ? 70 : 40, paddingTop: inList ? 10 : 0, paddingBottom: inList ? 10 : 0}}>
         <TextWrapper>
             <TextWidth>
                 <Text style={textStyle}>{text}</Text>

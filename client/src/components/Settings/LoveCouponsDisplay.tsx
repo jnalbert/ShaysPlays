@@ -1,7 +1,8 @@
-import React, { FC, useState } from 'react'
-import { RefreshControl, View } from 'react-native';
+import React, { FC, useState, useEffect } from 'react'
+import { RefreshControl } from 'react-native';
 import styled from 'styled-components/native'
-import { Nunito, Text200, Text300 } from '../../shared/colors';
+import { getAllActiveCoupons } from '../../../firebase/FirestoreFunctions';
+import { Nunito, Text200, Text300, WorkSans } from '../../shared/colors';
 import LoveCouponComp from './LoveCouponComp';
 
 
@@ -56,12 +57,20 @@ const InnerHeaderText = styled.Text`
 
 const LoveCouponsWrapper = styled.ScrollView`
     flex-direction: column;
+    /* min-height: 50%; */
     /* max-height: 40%; */
 `
 
 const CouponWrapper = styled.View`
     margin-top: 7px;
     margin-bottom: 7px;
+`
+
+const NoCouponsYetText = styled.Text`
+    color: ${Text300};
+    font-size: 16px;
+    text-align: center;
+    font-family: ${WorkSans};
 `
 
 interface CouponType {
@@ -98,12 +107,21 @@ const LoveCouponsDisplay: FC = () => {
         }
     ]
 
-    const [coupons, setCoupons] = useState<CouponType[]>(couponsData)
+    const [coupons, setCoupons] = useState<CouponType[]>([])
 
 
     const getCouponData = async () => {
-
+        setIsRefreshing(true)
+        setCoupons([])
+        const coupons: any = await getAllActiveCoupons()
+        // console.log(coupons)
+        setCoupons(coupons)
+        setIsRefreshing(false)
     }
+
+    useEffect(() => {
+        getCouponData()
+    }, [])
 
     const [isRefreshing, setIsRefreshing] = useState(false)
 
@@ -131,10 +149,12 @@ const LoveCouponsDisplay: FC = () => {
                     await getCouponData()
                   }} />
             }>
+                {coupons.length === 0 && <NoCouponsYetText>No coupons yet</NoCouponsYetText>}
+
                     {coupons.map((coupon, index) => {
                         return (
                             <CouponWrapper key={index}>
-                                <LoveCouponComp textStyle={{fontFamily: Nunito, fontSize: 18}} text={coupon.description} isCheck={coupon.isCompleted} circleSize={30} />
+                                <LoveCouponComp textStyle={{fontFamily: Nunito, fontSize: 18}} text={coupon.description} isCheck={coupon.isCompleted} circleSize={30} inList/>
                             </CouponWrapper>
                         )
                     })}

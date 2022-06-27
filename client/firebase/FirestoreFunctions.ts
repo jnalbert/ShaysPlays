@@ -94,6 +94,32 @@ export const getNewLoveCoupon = async () => {
     }
 }
 
+export const getAllActiveCoupons = async () => {
+    try {
+        const couponsRef = collection(db, "loveCoupons")
+        const q = query(couponsRef, where("isClaimed", "==", true));
+        
+        const docsList = (await getDocs(q)).docs
+
+        const coupons: {
+            description: string;
+            isCompleted: boolean;
+        }[] = []
+        for (const doc of docsList) {
+            // console.log(doc.data())
+            coupons.push({
+                description: doc.data().text,
+                isCompleted: doc.data().isCompleted
+            })
+        }
+        
+        return coupons
+
+    } catch (error) {
+        
+    }
+}
+
 // const addThem = async (downloadUrls: string[]) => {
 //     console.log(downloadUrls.length)
 //     await updateDoc(doc(db, "picturesUrls", "pictures"), {
