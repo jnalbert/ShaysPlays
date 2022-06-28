@@ -107,7 +107,7 @@ const ClaimRewardsScreen: FC = () => {
             <LoveCouponWrapper>
                 <LoveCouponHeader>Love Coupon</LoveCouponHeader>
                 <CouponWrapper>
-                    <LoveCouponComp text={loveCoupon} isCheck={false} circleSize={25} textStyle={{fontSize: 20}} height={100} backgroundColor={Pink}/>
+                    <LoveCouponComp text={loveCoupon} isCheck={false} circleSize={25} textStyle={{fontSize: 18}} height={100} backgroundColor={Pink}/>
                 </CouponWrapper>
             </LoveCouponWrapper>
         </AnimatedWrapper>
