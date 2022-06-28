@@ -4,7 +4,7 @@ export default {
   expo: {
     name: "Shays Plays",
     slug: "ShaysPlays",
-    version: "1.0.0",
+    version: "1.0.1",
     orientation: "portrait",
     icon: "./assets/SmallLogo.png",
     userInterfaceStyle: "automatic",
@@ -22,7 +22,7 @@ export default {
     ios: {
       supportsTablet: true,
       bundleIdentifier: "com.jnalbert.shaysplays",
-      buildNumber: "3",
+      buildNumber: "2",
     },
     android: {
       adaptiveIcon: {

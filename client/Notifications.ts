@@ -21,9 +21,14 @@ export const scheduleNotification = async (time: string) => {
         let notificationTime = makeDate(time)
     // check if notificationTime is in the past
 
-        if (notificationTime < new Date()) {
+        if (i == 1 && notificationTime > new Date()) {
+            notificationTime.setDate(notificationTime.getDate())
+            // i = 0
+        } else {
+            // const modifier = firstIsLess ? i - 1 : 1
             notificationTime.setDate(notificationTime.getDate() + i)
         }
+     
         // console.log(i)
         notificationTime.setSeconds(0)
 
