@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 export default {
   expo: {
-    name: "ShaysPlays",
+    name: "Shays Plays",
     slug: "ShaysPlays",
     version: "1.0.0",
     orientation: "portrait",
@@ -21,7 +21,8 @@ export default {
     ],
     ios: {
       supportsTablet: true,
-      
+      bundleIdentifier: "com.jnalbert.shaysplays",
+      buildNumber: "1",
     },
     android: {
       adaptiveIcon: {
