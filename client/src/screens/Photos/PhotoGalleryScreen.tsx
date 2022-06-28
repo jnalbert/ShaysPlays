@@ -96,13 +96,13 @@ const PhotoGalleryScreen: FC = () => {
         interruptionModeAndroid: 1,
         
       })
-
-    const audioUrls = [
-        require("../../../assets/songs/LoverTyalorSwift.mp3"),
-        require("../../../assets/songs/KeepDrivingHarry.mp3"),
-        require("../../../assets/songs/DelicateTaylorSwift.mp3"),
-        require("../../../assets/songs/LoveOfMyLifeHarry.mp3")
+      const audioUrls = [
+        "https://firebasestorage.googleapis.com/v0/b/shaysplays-c233d.appspot.com/o/songs%2FLoverTyalorSwift.mp3?alt=media&token=04a809aa-096b-43ac-aa3f-79e53523799c",
+        "https://firebasestorage.googleapis.com/v0/b/shaysplays-c233d.appspot.com/o/songs%2FKeepDrivingHarry.mp3?alt=media&token=0d098ad6-3619-4339-921f-85a93db4fc93",
+        "https://firebasestorage.googleapis.com/v0/b/shaysplays-c233d.appspot.com/o/songs%2FDelicateTaylorSwift.mp3?alt=media&token=5af3e077-8be0-41e6-ab7f-69076f7948cb",
+        "https://firebasestorage.googleapis.com/v0/b/shaysplays-c233d.appspot.com/o/songs%2FLoveOfMyLifeHarry.mp3?alt=media&token=161dc345-b671-4a28-9e39-53fa197430a2"
         ]
+    
 
     let currentSongIndex = Math.floor((Math.random() * (audioUrls.length)));
     // console.log(currentSongIndex, "Here")
@@ -112,7 +112,7 @@ const PhotoGalleryScreen: FC = () => {
 
     const playAudio = async () => {
         await sound.current.loadAsync(
-            audioUrls[currentSongIndex],
+            { uri: audioUrls[currentSongIndex] },
             { progressUpdateIntervalMillis: 2000}
             );
 
