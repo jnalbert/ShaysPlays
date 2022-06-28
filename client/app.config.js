@@ -22,7 +22,7 @@ export default {
     ios: {
       supportsTablet: true,
       bundleIdentifier: "com.jnalbert.shaysplays",
-      buildNumber: "1",
+      buildNumber: "3",
     },
     android: {
       adaptiveIcon: {
