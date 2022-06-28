@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, increment, query, updateDoc, where } from "firebase/firestore"
+import { addDoc, collection, doc, getDoc, getDocs, increment, query, updateDoc, where } from "firebase/firestore"
 import { db } from "../config/firebase"
 
 
@@ -167,6 +167,46 @@ export const setLoveLastChecked = async (lastTimeChecked: Date) => {
         console.log(error)
     }
 }
+
+// export const addStuff = async () => {
+//     try {
+//         const items = [
+//             'I will buy you one book from anywhere you want', 
+//             'I will make you a homemade meal of your choosing', 
+//             'I will give you a piece of gum anywhere, I will find you and seek you out', 
+//             'You can ask me anything and I will answer truthfully', 
+//             'You can win any argument or disagreement with this just once', 
+//             'We can have a game night and play any game you want', 
+//             'A movie night together where we get to watch whatever movie you pick', 
+//             'Redeem this for one dessert that I pay for when we go out', 
+//             'Redeem this for unlimited smoochy smoochies 😚😚', 
+//             'Redeem this for one free 👅🧠whenever you want 😏', 
+//             'Redeem this for a free massage 💆‍♀️', 
+//             'Redeem this for a bouquet of flowers of your choosing', 
+//             'Redeem this for a quickie 😏😏', 
+//             'Redeem this for one board game night', 
+//             'Redeem this for one thing that I have to say yes to I can’t say no', 
+//             'Redeem this for one picnic together in the park', 
+//             'Redeem this for one photo of me any time you want 😏', 
+//             'Redeem this for one song we sing together hahaha', 
+//             'Redeem this for one summer school assignment I do for you', 
+//             'Redeem this for one trip up to Monterey with me 🥰',
+            
+//         ]
+
+     
+
+//         for (const item of items) {
+//             await addDoc(collection(db, "loveCoupons"), {
+//                 isClaimed: false,
+//                 isCompleted: false,
+//                 text: item
+//             })
+//         }
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
 
 
 // const addThem = async (downloadUrls: string[]) => {
