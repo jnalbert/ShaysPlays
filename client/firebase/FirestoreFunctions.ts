@@ -120,6 +120,55 @@ export const getAllActiveCoupons = async () => {
     }
 }
 
+export const getLoveNotificationText = async () => {
+    try {
+        const notificationData = (await getDoc(doc(db, "loveNotifications", "notifications"))).data()
+        // return random notification from the array
+        const random = Math.floor(Math.random() * notificationData?.notes.length)
+        return notificationData?.notes[random]
+    } catch (error) {
+        
+    }
+}
+
+export const getLoveNotificationData = async () => {
+    try {
+        const notificationData = (await getDoc(doc(db, "loveNotifications", "notifications"))).data()
+        return {isCheck: notificationData?.isChecked, time: notificationData?.time, lastTimeChecked: notificationData?.lastTimeChecked}
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const setLoveNotificationData = async (isCheck: boolean, time: string, lastTimeChecked?: Date) => {
+    try {
+        const notificationDoc = doc(db, "loveNotifications", "notifications")
+        updateDoc(notificationDoc, {
+            isChecked: isCheck,
+            time: time,
+        })
+        if (lastTimeChecked){
+            updateDoc(notificationDoc, {
+                lastTimeChecked: lastTimeChecked.toISOString()
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const setLoveLastChecked = async (lastTimeChecked: Date) => {
+    try {
+        const notificationDoc = doc(db, "loveNotifications", "notifications")
+        updateDoc(notificationDoc, {
+            lastTimeChecked: lastTimeChecked.toISOString()
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 // const addThem = async (downloadUrls: string[]) => {
 //     console.log(downloadUrls.length)
 //     await updateDoc(doc(db, "picturesUrls", "pictures"), {
