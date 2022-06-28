@@ -6,7 +6,7 @@ import LoveCouponComp from './LoveCouponComp';
 import Collapsible from 'react-native-collapsible';
 import BasicButton from '../../shared/BasicButton';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { deleteNotifications, scheduleNotification } from '../../../Notifications';
+import { deleteNotifications, makeDate, scheduleNotification } from '../../../Notifications';
 import { getLoveNotificationData, setLoveNotificationData } from '../../../firebase/FirestoreFunctions';
 
 const SectionWrapper = styled.View`
@@ -89,16 +89,7 @@ interface LoveNotificationProps {
     time: string;
 }
 
-export const makeDate = (time: string) => {
-    const date = new Date();
-    let hours = parseInt(time.substring(0, 2))
-    hours = time.includes("pm") ? hours + 12 : hours;
-    const minutes = parseInt(time.substring(time.indexOf(":") + 2, time.indexOf(":") + 4));
-    // console.log(hours, minutes)
-    date.setHours(hours)
-    date.setMinutes(minutes)
-    return date;
-}
+
 
 
 const LoveNotifications: FC = () => {

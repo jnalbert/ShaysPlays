@@ -1,6 +1,5 @@
 import { cancelAllScheduledNotificationsAsync, getAllScheduledNotificationsAsync, scheduleNotificationAsync } from "expo-notifications";
 import { getLoveNotificationData, getLoveNotificationText, setLoveLastChecked } from "./firebase/FirestoreFunctions";
-import { makeDate } from "./src/components/Settings/LoveNotifications";
 
 export const deleteNotifications = async () => {
     try {
@@ -66,4 +65,15 @@ export const checkNotificationsOnStart = async () => {
     } catch (error) {
         console.log(error)
     }
+}
+
+export const makeDate = (time: string) => {
+    const date = new Date();
+    let hours = parseInt(time.substring(0, 2))
+    hours = time.includes("pm") ? hours + 12 : hours;
+    const minutes = parseInt(time.substring(time.indexOf(":") + 2, time.indexOf(":") + 4));
+    // console.log(hours, minutes)
+    date.setHours(hours)
+    date.setMinutes(minutes)
+    return date;
 }
